@@ -1,36 +1,29 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen'
 import MusicListScreen from '../screens/MusicListScreen'
 
-const Tab = createBottomTabNavigator();
-
-const globalScreenOptions = {
-  headerShown: false, 
-  tabBarShowLabel: false,
-  tabBarInactiveTintColor: '#aaa',
-  tabBarActiveTintColor: "#fff",
-  tabBarInactiveBackgroundColor: '#fff',
-}
-
+const Stack = createNativeStackNavigator();
 const Router = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={globalScreenOptions}>
-        <Tab.Screen name="Home" component={HomeScreen} 
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{headerShown: false}} 
+        />
+        <Stack.Screen 
+          name="MusicList" 
+          component={MusicListScreen}
           options={{
-            tabBarStyle: {backgroundColor: '#5690A5'},
-            tabBarIcon: ({color}) => <FontAwesome5 color={color} name="home" size={25} />
-        }}/>
-        <Tab.Screen name="MusicList" component={MusicListScreen}
-        options={{
-          tabBarInactiveBackgroundColor: '#5690A5',
-          tabBarActiveTintColor: "#5690A5",
-          tabBarIcon: ({color}) => <FontAwesome5 color={color} name="list" size={25} />
-        }} />
-      </Tab.Navigator>
+            title: 'Your music',
+            headerTitleAlign: 'center',
+            headerTintColor: '#5690A5',
+            headerStyle: {backgroundColor: '#FDE9FF'},  
+          }} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }

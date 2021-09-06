@@ -7,7 +7,7 @@ const MusicListItem = ({item}) => {
     <View style={styles.container}>
       <Image 
         style={styles.image}
-        source={{uri: item.image}}
+        source={item.image}
       />
       <View style={styles.textWrap}>
         <Text style={styles.song}>{item.song}</Text>
